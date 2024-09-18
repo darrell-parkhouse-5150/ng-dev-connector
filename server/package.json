@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "0.3.2",
+  "description": "backend for the social network dev connector",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darrell-parkhouse-5150/ng-dev-connector.git"
+  },
+  "keywords": [
+    "mysql",
+    "node",
+    "javascript",
+    "html5",
+    "scss",
+    "css3"
+  ],
+  "author": "darrell parkhouse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darrell-parkhouse-5150/ng-dev-connector/issues"
+  },
+  "homepage": "https://github.com/darrell-parkhouse-5150/ng-dev-connector#readme",
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.5",
+    "bcrypt": "^5.1.1",
+    "concurrently": "^9.0.1",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3"
+  }
+}
