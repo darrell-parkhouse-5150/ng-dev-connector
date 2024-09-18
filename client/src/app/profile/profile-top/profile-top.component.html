@@ -1,0 +1,16 @@
+<div class="profile-top bg-primary p-2">
+    <img [src]="profile.user.avatar" alt="profile-img" class="rounded-img my-1">
+    <p class="lead">
+        {{profile.status}} {{ profile.company ? ' at ' + profile.company : '' }}
+    </p>
+    <p>{{ profile.location }}</p>
+    <div class="icons my-1">
+        <a *ngIf="profile.website" [href]="profile.website"  target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-globe fa-2x"></i>
+        </a>
+
+        <a *ngFor="let link of getSocialLinks()" [href]="link.value" target="_blank" rel="noopener noreferrer">
+            <i class={`fab fa-${link.key} fa-2x`}></i>
+        </a>
+    </div>
+</div>
