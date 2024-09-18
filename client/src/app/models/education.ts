@@ -3,6 +3,6 @@ export interface Education {
     school: string;
     degree: string;
     fos: string;
-    from: Date;
-    to: Date;
+    from: Date | string;
+    to: Date | string;
 }
