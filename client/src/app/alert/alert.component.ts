@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { Alert } from '../models/alert';
 import { AlertType } from '../models/AlertTypes';
 import { Store } from '@ngrx/store';
@@ -10,10 +10,7 @@ import { StoreModule } from '@ngrx/store';
 @Component({
     selector: 'ng-alert',
     standalone: true,
-    imports: [
-        // @ts-ignore
-        StoreModule.forRoot({ alert: AlertReducer})
-    ],
+    imports: [StoreModule.forRoot({ alert: AlertReducer})],
     templateUrl: './alert.component.html',
     styleUrl: './alert.component.scss'
 })
@@ -23,7 +20,7 @@ export class AlertComponent {
     alerts$!: Observable<Alert[]>;
 
     // @ts-ignore
-    constructor(private store: Store) {}
+    constructor(@Inject('store') private store: Store) {}
 
     ngOnInit(): void {
         this.alerts$ = this.store.select('alert');
