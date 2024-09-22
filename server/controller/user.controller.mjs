@@ -46,7 +46,7 @@ const login = async (req, res) => {
         `;
 
         const results = await getResults(sql, [user_id, now(), user_name]);
-        
+
         return res.status(201).send({
             message: 'sauccessfully loged user in',
             data: results
@@ -59,7 +59,72 @@ const login = async (req, res) => {
     }
 }
 
+const getAllUsers = async (req, res) => {
+
+}
+
+const getSingleUser = async (req, res) => {
+    
+}
+
+const updateUser = async (req, res) => {
+    try {
+        const { user_id } = req.params;
+        const { name, email, updated_at } = req.body;
+
+        if (!name || !email) {
+            return res.status(403).send({
+                message: 'all fields are required'
+            })
+        }
+
+        const sql = /*sql*/`
+            update users
+            set name = ?, email = ?, updated_at = ?
+            where user_id = ?
+        `;
+
+        const results = await getResults(sql, [user_id, name, email, now()]);
+
+        if (results.affectedRows === 1) {
+            return res.status(201).send({
+                message: 'user successfully updated',
+                data: results
+            })
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(503).send()
+    }
+}
+
+const removeUser = async (req, res) => {
+    try {
+        const sql = /*sql*/`
+            delete from users
+            where name=?
+        `;
+
+        const results = await getResults(sql);
+
+        return res.status(201).send({
+            message: 'user successfull deleted',
+            data: results
+        })
+    } catch (err) {
+        console.error(err);
+        return res.status(503).send({
+            message: 'internal server error'
+        })
+        
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getAllUsers,
+    getSingleUser,
+    updateUser,
+    removeUser
 }
