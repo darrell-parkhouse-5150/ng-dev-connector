@@ -48,7 +48,6 @@ create table `social_networks` (
 create table `component_post`(
     `component_post_id` int(11) primary key auto_increment,
     `name` varchar(60),
-    `user_id` int(11) not null,
     `version` varchar(5) not null,
     `type` varchar(30) not null,
     `created_at` datetime
@@ -56,3 +55,11 @@ create table `component_post`(
 
 create index `idx_component_id` on `component_post` (`component_post_id`);
 create index `idx_group_id` on `groups` (`grp_id`);
+
+alter table `component_post`
+    drop column `user_id`
+
+alter table `component_post`
+    add column `author` varchar(50) after name;
+alter table `component_post`
+    add column `updated_at` datetime after `author`;
