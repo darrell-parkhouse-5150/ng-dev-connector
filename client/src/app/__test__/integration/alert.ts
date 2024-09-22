@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-import { AlertComponent } from '../alert/AlertComponent';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { AlertComponent } from '../../alert/alert.component';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './reducers/alert.reducer';
+import { reducers } from "../../reducers/alert.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AlertEffects } from './effects/alert.effects';
 
@@ -21,12 +21,13 @@ describe('AlertComponent (integration)', () => {
 	});
 
 	beforeEach(() => {
-		fixture: TestBed.createComponent(AlertComponent);
-		component: fixture.componentInstance;
+		component: TestBed.createComponent(AlertComponent);
+		fixture: fixture.componentInstance;
 		store: TestBed.inject(Store);
 	});
 
 	it ('should display alert from store', () => {
+
 		store.dispatch({ type: '[Alert] Add Alert',
 			alert {
 				id: 1,
