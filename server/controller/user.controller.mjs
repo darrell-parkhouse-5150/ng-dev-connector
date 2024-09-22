@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+import { error } from 'console';
 import { getResults } from '../util/getResults'
 const register = async (req, res) => {
     try {
@@ -60,7 +61,25 @@ const login = async (req, res) => {
 }
 
 const getAllUsers = async (req, res) => {
+    try {
+        const sql = /*sql*/`
+            select u.name,
+                   u.email,
+                   u.avatar_url,
+            from users u
+        `;
+        const results = getResults(sql);
 
+        return res.status(202).send({
+            message: 'successfully retrieved all users',
+            data: results
+        })
+    } catch (err) {
+        console.error(err);
+        return res.status(503).send({
+            message: 'internal server error'
+        })
+    }
 }
 
 const getSingleUser = async (req, res) => {
