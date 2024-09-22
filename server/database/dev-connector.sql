@@ -53,3 +53,6 @@ create table `component_post`(
     `type` varchar(30) not null,
     `created_at` datetime
 );
+
+create index `idx_component_id` on `component_post` (`component_post_id`);
+create index `idx_group_id` on `groups` (`grp_id`);
