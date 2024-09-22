@@ -35,4 +35,12 @@ create table `grp_invite`(
     `grp_inviter` int (11),
     `grp_invitee` int (11),
     `grp_time` datetime not null
+);
+
+create table `social_networks` (
+    `social_network_id` int(11) primary key auto_increment,
+    `url` varchar(255) not null,
+    `user_id` int(11) not null,
+    
+    Foreign Key (`user_id`) references `users`(`user_id`)
 )
