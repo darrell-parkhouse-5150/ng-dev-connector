@@ -41,6 +41,15 @@ create table `social_networks` (
     `social_network_id` int(11) primary key auto_increment,
     `url` varchar(255) not null,
     `user_id` int(11) not null,
-    
+
     Foreign Key (`user_id`) references `users`(`user_id`)
-)
+);
+
+create table `component_post`(
+    `component_post_id` int(11) primary key auto_increment,
+    `name` varchar(60),
+    `user_id` int(11) not null,
+    `version` varchar(5) not null,
+    `type` varchar(30) not null,
+    `created_at` datetime
+);
