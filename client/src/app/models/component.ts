@@ -1,4 +1,4 @@
-import { ComponentTypes } from "./ComponentTypes."
+import { ComponentTypes } from "./ComponentTypes"
 import { User } from "./user"
 
 export interface Component {
