@@ -64,7 +64,27 @@ const getAllUsers = async (req, res) => {
 }
 
 const getSingleUser = async (req, res) => {
-    
+    try {
+        const { user_id } = req.params;
+
+        if (!user_id) {
+            return res.status(403).send({
+                message: 'user id is required'
+            })
+        }
+
+        const user = await getResults(sql, [user_id]);
+
+        return res.status(200).send({
+            message: 'successfully retrieved a user',
+            data: user
+        })
+    } catch (err) {
+        console.error(err);
+        return res.status(503).send({
+            message: 'internal server error'
+        })
+    }
 }
 
 const updateUser = async (req, res) => {
@@ -84,7 +104,7 @@ const updateUser = async (req, res) => {
             where user_id = ?
         `;
 
-        const results = await getResults(sql, [user_id, name, email, now()]);
+        const results = await getResults(sql, [user_id, name, email, updated_at]);
 
         if (results.affectedRows === 1) {
             return res.status(201).send({
