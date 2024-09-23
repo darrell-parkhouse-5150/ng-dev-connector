@@ -1,5 +1,6 @@
+// @ts-ignore
 import { createAction, props } from '@ngrx/store';
-import { Alert } from '../alert/alert.component.ts';
+import { Alert } from '../models/alert';
 
 /** 
  * create action for all of the alerts:
