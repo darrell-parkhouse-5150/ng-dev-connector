@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlertComponent } from '../alert/alert.component';
+// @ts-ignore
 import { Store } from '@ngrx/store';
+// @ts-ignore
 import { provideMockStore } from '@ngrx/store/testing';
 
 describe('AlertComponent', () => {
