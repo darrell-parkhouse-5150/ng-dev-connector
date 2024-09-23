@@ -9,12 +9,12 @@ import { select, selectSnapshot } from '@ngrx/store';
 import { Observable } from 'rxjs';
 // @ts-ignore
 import { StoreModule } from '@ngrx/store';
+import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
     selector: 'ng-alert',
     standalone: true,
-    // @ts-ignore
-    imports: [/*StoreModule.forRoot({ alert: AlertReducer})*/],
+    imports: [/*StoreModule.forRoot({ alert: AlertReducer})*/ CommonModule, NgFor],
     templateUrl: './alert.component.html',
     styleUrl: './alert.component.scss'
 })
@@ -22,6 +22,11 @@ export class AlertComponent {
     
     @Input()
     alerts$!: Observable<Alert[]>;
+    
+    alert: Alert = {
+        type: AlertType.success,
+        msg: '',
+    }
 
     // @ts-ignore
     constructor(@Inject('store') private store: Store) {}
