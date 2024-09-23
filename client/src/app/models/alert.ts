@@ -1,6 +1,6 @@
 import { AlertType } from "./AlertTypes";
 
 export interface Alert {
-    type: AlertType,
+    type: AlertType
     msg: string
 }
