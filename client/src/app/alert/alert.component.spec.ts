@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-import { AlertComponent } from '../alert/AlertComponent';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AlertComponent } from '../alert/alert.component';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 
@@ -16,7 +16,7 @@ describe('AlertComponent', () => {
 					initialState: {
 						alert: [
 							{ id: 1, alertType: 'success', msg: 'Success message' },
-							{ id: 2: alertType: 'error', msg: 'Error message' }
+							{ id: 2, alertType: 'error', msg: 'Error message' }
 						]
 					}
 				})
