@@ -62,4 +62,5 @@ from posts p
 left join
 	likes l = p.post_id = l.post_id
 right join
-	shares s = p.post_id = s.post_id
+	shares s = p.post_id = s.post_id;
+
