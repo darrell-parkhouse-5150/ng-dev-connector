@@ -1,4 +1,10 @@
-<div class="alert-container">
-    <div *ngFor="let alert of alerts$ | async" class="alert alert-{{alert.type}}">
-        {{ alert.msg }}
+<div class="alert" *ngIf="msg">
+    <div [ngClass]="{
+        'alert-success': msg.type === 'sucess',
+        'alert-error': msg.type === 'error',
+        'alert-warning': msg.type === 'warning',
+        'alert-info': msg.type === 'info',
+    }">
+        {{ msg.msg }}
+    </div>
 </div>
