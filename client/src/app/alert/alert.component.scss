@@ -1,3 +1,33 @@
+@import "../global-styles/vars";
 .alert {
-    padding: 20px 30px;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    border-radius: 5px;
+    z-index:1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    &-success {
+        background-color: var(--clr-alert-success-bg);
+        border: 1px solid var(--clr-alert-success-border);
+        color: var(--clr-alert-success-text);
+    }
+
+    &-error {
+        background-color: var(--clr-alert-error-bg);
+        border: 1px solid var(--clr-alert-error-border);
+        color: var(--clr-alert-error-text)
+    }
+    
+    &-warning {
+        background-color: var(--clr-alert-warning-bg);
+        border: 1px solid var(--clr-alert-warning-border);
+        color: var(--clr-alert-warning-text)
+    }
+    
+    &-info {
+        background-color: var(--clr-alert-info-bg);
+        border: 1px solid var(--clr-alert-info-border);
+        color: var(--clr-alert-info-text)
+    }
 }
