@@ -11,6 +11,8 @@
     "url": "git+https://github.com/darrell-parkhouse-5150/ng-dev-connector.git"
   },
   "keywords": [
+    "angular",
+    "express",
     "mysql",
     "node",
     "javascript",
