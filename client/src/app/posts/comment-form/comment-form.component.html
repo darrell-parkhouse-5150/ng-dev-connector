@@ -1,0 +1,12 @@
+<div class="post-form">
+    <div class="bg-primary p">
+        <h3>leave a comment</h3>
+    </div>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <textarea
+            formControlName="text"
+            placeholder="what are your thought"
+            required></textarea>
+        <button class="btn-primary" type="button">Comment</button>
+    </form>
+</div>
