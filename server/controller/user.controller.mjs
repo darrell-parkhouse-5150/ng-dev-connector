@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-import { error } from 'console';
 import { getResults } from '../util/getResults'
 const register = async (req, res) => {
     try {
