@@ -9,7 +9,7 @@
                 type="text" 
                 class="form-control"
                 [ngClass]="{'is-invalid': submitted && f['name'].errors }">
-            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback" aria-required="true">
+            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
                 <div *ngIf="f['name'].errors['required']">Name is required</div>
             </div>
         </div>
