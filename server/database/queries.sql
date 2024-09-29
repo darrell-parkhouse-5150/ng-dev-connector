@@ -50,7 +50,7 @@ where customer_id in (
 	select customer_id
 	from high_value_customers
 
--- for post-meta componemt
+--? for post-meta componemt
 select
 	p.post_id,
 	count(distinct l.like_id) as likes_count,
@@ -64,3 +64,11 @@ left join
 right join
 	shares s = p.post_id = s.post_id;
 
+--? grab the version of the component
+select c.version 
+from `components` c 
+where c.version > 0.0.3
+
+--? search the component table for the name column
+select c.name
+from `components` c
