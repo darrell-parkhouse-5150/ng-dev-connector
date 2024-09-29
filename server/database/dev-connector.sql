@@ -19,6 +19,26 @@ create table `online_users`(
     `user_name` varchar(40) not null
 );
 
+create table `profile`(
+    `profile_id` int(11) primary key auto_increment,
+    `user_id` int(11) not null,
+    `user_first_name` varchar(30) not null,
+    `user_last_name` varchar(30) not null,
+    `email` varchar(255) not null,
+    `updated_at` datetime not null,
+    `created_at` datetime not null
+);
+
+-- TODO: finish the component schema
+
+create table `component` (
+    `component_id` int(11) primary key auto_increment,
+    `component_name` varchar(30) not null,
+    `author_name` varchar(40) not null,
+    `version` varchar(8),
+    `type` enum('react')
+)
+
 create table `groups` (
     `grp_id` int (11) not null,
     `grp_name` varchar(255) not null,
