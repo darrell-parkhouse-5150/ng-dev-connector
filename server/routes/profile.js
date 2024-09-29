@@ -11,10 +11,10 @@ import {
 
 const baseUrl = 'http://localhost:3000'
 
-router.post(`${baseUrl}/api/user/:userId/profile`, createProfile)
-router.get(`${baseUrl}/api/user/:userId/profile`, getUserProfile)
-router.get(`${baseUrl}/api/users/profile`, getAllProfiles)
-router.put(`${baseUrl}/api/user/:userId/profile`, updateProfile)
+router.post(`${baseUrl}/api/users/:userId/profile`, createProfile)
+router.get(`${baseUrl}/api/users/:userId/profile`, getUserProfile)
+router.get(`${baseUrl}/api/users/:userId/profile`, getAllProfiles)
+router.put(`${baseUrl}/api/users/:userId/profile`, updateProfile)
 router.delete(`${baseUrl}/api/user/:userId/profile`, deleteProfile)
 
 module.exports = router
