@@ -13,4 +13,10 @@ export class PostService {
   addComment(postId: number, text: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${postId}/comments`, { text })
   }
+
+  getPostMeta(postId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${postId}/meta`, {})
+  }
+
+  
 }
