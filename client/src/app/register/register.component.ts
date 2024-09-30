@@ -1,81 +1,61 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { AlertService } from '../services/alert.service';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs';
-import { NgClass, NgIf } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {NgIf, NgClass, NgFor} from '@angular/common'
+
 @Component({
-    selector: 'ng-register',
-    standalone: true,
-    imports: [ReactiveFormsModule, FormsModule, HttpClientModule, NgClass, NgIf],
-    templateUrl: './register.component.html',
-    styleUrl: './register.component.scss',
-    providers: [AuthService]
+  selector: 'ng-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
+  imports: [ReactiveFormsModule, NgIf, NgFor, NgClass],
+  standalone: true
 })
-export class RegisterComponent implements OnInit, OnDestroy {
-    registerForm!: FormGroup;
-    submitted: boolean = false;
-    private unsubscribe$ = new Subject<void>();
-    name!: string|null;
+export class RegisterComponent {
+  registerForm: FormGroup;
+  submitted = false;
 
-    constructor(
-        private router: Router,
-        private auth: AuthService,
-        private as: AlertService
-    ) {}
+  constructor(private formBuilder: FormBuilder) {
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validator: this.MustMatch('password', 'confirmPassword')
+    });
+  }
 
-    ngOnInit(): void {
-        this.registerForm = new FormGroup({
-            name: new FormControl('', Validators.required),
-            email: new FormControl('', [Validators.required, Validators.email]),
-            password: new FormControl('', [
-                Validators.required,
-                Validators.minLength(6),
-            ]),
-            confpass: new FormControl('', Validators.required),
-        });
+  // Get form controls for easy access in the template
+  get f() {
+    return this.registerForm.controls;
+  }
+
+  // Custom validator for password match
+  MustMatch(password: string, confirmPassword: string) {
+    return (formGroup: FormGroup) => {
+      const passControl = formGroup.controls[password];
+      const confirmPassControl = formGroup.controls[confirmPassword];
+
+      if (confirmPassControl.errors && !confirmPassControl.errors['mustMatch']) {
+        return;
+      }
+
+      if (passControl.value !== confirmPassControl.value) {
+        confirmPassControl.setErrors({ mustMatch: true });
+      } else {
+        confirmPassControl.setErrors(null);
+      }
+    };
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.registerForm.invalid) {
+      return;
     }
 
-    get f() {
-        return this.registerForm.controls;
-    }
-
-    onSubmit(): void {
-        this.submitted = true;
-
-        if (this.registerForm.invalid) {
-            return;
-        }
-
-        if (this.f['password'].value !== this.f['confpass'].value) {
-            this.as.error('Passwords do not match');
-            return;
-        }
-
-        this.auth
-            .register(
-                this.f['name'].value,
-                this.f['email'].value,
-                this.f['password'].value
-            )
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(
-                (data) => {
-                    this.as.success('Registration successful');
-                    this.router.navigate(['/login']);
-                },
-                (error) => {
-                    this.as.error(error);
-                }
-            );
-    }
-
-    ngOnDestroy(): void {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
-    }
+    // Perform registration logic here (e.g., call an API)
+    console.log('Registration successful', this.registerForm.value);
+  }
 }
