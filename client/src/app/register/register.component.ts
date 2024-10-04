@@ -13,6 +13,8 @@ import { ButtonComponent } from '../button/button.component';
 export class RegisterComponent {
   registerForm: FormGroup;
   submitted = false;
+testing: string = '';
+text: any;
 
   constructor(private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group({
