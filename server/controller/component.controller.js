@@ -48,6 +48,18 @@ export const getVersion = async (req, res) => {
     try {
         const { name, component_version } = req.body
 
+        if (!name) {
+            return res.status(403).send({
+                message: 'name required'
+            })
+        }
+
+        if (!component_version) {
+            return res.status(403).send({
+                message: 'version required'
+            })
+        }
+
         const sql = /*sql*/`
             select cp.name, 
                    cp.version 
@@ -75,3 +87,40 @@ export const getVersion = async (req, res) => {
     }
 }
 
+export const getSingleComponent = async (req, res) => {
+    try {
+        const { name } = req.body
+
+        if (!name) {
+            return res.status(403).send({
+                message: 'name required'
+            })
+        }
+
+        const sql = /*sql*/`
+            select
+                cp.name
+            from component_post cp
+            where name = ?
+        `;
+
+        const result = await getResults(sql, [name])
+
+        if (result.length === 0) {
+            return res.status(403).send({
+                message: `${noResultsError}`
+            })
+        } else {
+            return res.status(201).send({
+                message: `${successMsg} retrieved component from the database`,
+                data: result
+            })
+        }
+    } catch (err) {
+        console.error(err)
+
+        return res.status(503).send({
+            message: `${serverError}`
+        })        
+    }
+}
