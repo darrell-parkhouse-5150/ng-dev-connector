@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   isAuthenticated!: boolean;
 
   constructor(private as: AuthService, private router: Router) {}
+
+  /**
+   * build the form
+   */
   ngOnInit(): void {
       this.loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -24,6 +28,9 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  /**
+   * submit the form data
+   */
   onSubmit(): void {
     this.email = this.loginForm.get('email')?.value;
     this.password = this.loginForm.get('password')?.value;
