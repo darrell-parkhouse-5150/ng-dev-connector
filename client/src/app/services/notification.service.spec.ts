@@ -13,4 +13,8 @@ describe('NotificationService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it ('should notify with a sucess message', () => {
+  
+  })
 });
