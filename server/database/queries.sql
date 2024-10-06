@@ -72,3 +72,36 @@ where c.version > 0.0.3
 --? search the component table for the name column
 select c.name
 from `components` c
+
+UPDATE `component_post` SET `updated_at` = '2024-10-05 09:13:26', `style_loc` = '130', `structure_loc` = '60', `logic_loc` = '140' WHERE `component_post`.`component_post_id` = 1; 
+
+SELECT * FROM component_post 
+
+alter  table component_post
+	add column `total_loc` int(9) not null after `logic_loc`;
+
+-- 14ms
+with component_summary as (
+    select
+        cp.name,
+        count (cp.component_post_id) as total_components,
+        sum(style_loc + structure_loc + logic_loc) as total_line_count
+    from component_post cp
+)
+select  
+    total_components, 
+    total_line_count
+from 
+    component_summary
+
+select *, sum(style_loc + structure_loc + logic_loc) from `component_post`, 
+
+insert into `component_post` (`component_post_id`, `name`, `author`, `updated_at`, `version`, `style_loc`, `structure_loc`, `logic_loc`, `total_loc`, `type`, `created_at`) 
+VALUES (NULL, 'login form', 'darrell parkhouse', NULL, '0.2.1', '321', '130', '300', '751', 'react', '2024-10-05 10:14:30'); 
+insert into `component_post` (`component_post_id`, `name`, `author`, `updated_at`, `version`, `style_loc`, `structure_loc`, `logic_loc`, `total_loc`, `type`, `created_at`) 
+VALUES (NULL, 'movie form', 'darrell parkhouse', NULL, '3.2.1', '1200', '3130', '2300', '6630', 'react', '2024-10-05 10:14:30'); 
+
+select * from component_post
+
+UPDATE `component_post` SET `total_loc` = '3751' WHERE `component_post`.`component_post_id` = 5; 
+
