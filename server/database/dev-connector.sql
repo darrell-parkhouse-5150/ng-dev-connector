@@ -73,6 +73,16 @@ create table `component_post`(
     `created_at` datetime
 );
 
+alter table `component_post`
+    add column `style_loc` int(6) not null after `version`;
+
+alter table `component_post`
+    add column `structure_loc` int(6) not null after `style_loc`;
+alter table `component_post`
+    add column `logic_loc` int(6) not null after `structure_loc`;
+
+SELECT * FROM `component_post`
+
 create index `idx_component_id` on `component_post` (`component_post_id`);
 create index `idx_group_id` on `groups` (`grp_id`);
 
