@@ -73,6 +73,17 @@ create table `component_post`(
     `created_at` datetime
 );
 
+create table ` status_updates` (
+    `status_update_id` int(11) primary key auto_increment,
+    `user_id` int(11) not null,
+    `user_name` varchar(50),
+    `content` text not null,
+    `likes` int(11) not null,
+    `comments` varchar(255) not null,
+    `views` int(11) not null,
+    `datetime` datetime not null
+);      
+
 alter table `component_post`
     add column `style_loc` int(6) not null after `version`;
 
