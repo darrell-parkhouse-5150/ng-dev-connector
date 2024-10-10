@@ -34,7 +34,6 @@ export class StatusUpdateComponent {
 
     postStatus(): void {
         const taggedUserIds = this.extractTaggedUserIds(this.statusText)
-        
         this.http
             .post('/api/user/staus-updates/', this.status)
             .subscribe(() => {
