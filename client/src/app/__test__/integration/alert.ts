@@ -1,7 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AlertComponent } from '../../alert/alert.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers } from "../../reducers/alert.reducer';
+import { reducers } from "../../reducers/alert.reducer";
 import { EffectsModule } from '@ngrx/effects';
 import { AlertEffects } from './effects/alert.effects';
 
