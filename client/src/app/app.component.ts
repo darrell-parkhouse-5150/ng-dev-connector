@@ -5,10 +5,11 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from "./header/header.component";
 import { NgModel } from '@angular/forms';
+import { UserListComponent } from './user/user-list/user-list.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RegisterComponent ],
+  imports: [RouterOutlet, RegisterComponent, UserListComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
