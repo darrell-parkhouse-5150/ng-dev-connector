@@ -1,0 +1,15 @@
+<section class="container">
+    <ng-container *ngIf="loading; else profileContent">
+        <!-- spinner goes here -->
+    </ng-container>
+    <ng-template #profileContent>
+        <button class="btn btn-light" (click)="goBack()">Back to profiles</button>
+        <ng-container *ngIf="isAuthenticated && profileObj.user?.id === auth.user.id">
+            <button class="btn btn-dark" (click)="editProfile()">Edit profile</button>
+        </ng-container>
+        <div class="profile-grid my-1">
+            <ng-profile-top></ng-profile-top>
+            <ng-profile-about></ng-profile-about>
+        </div>
+    </ng-template>
+</section>
