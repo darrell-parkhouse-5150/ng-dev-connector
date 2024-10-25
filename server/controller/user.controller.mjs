@@ -1,5 +1,13 @@
 const bcrypt = require('bcrypt');
 import { getResults } from '../util/getResults'
+
+/**
+ * register a new user.
+ * 
+ * @param {Request} req - the request object
+ * @param {Response} res - the response object
+ * @returns {String} - messages with data
+ */
 const register = async (req, res) => {
     try {
         const { name, pass, email, avatar_url } = req.body
@@ -30,6 +38,13 @@ const register = async (req, res) => {
     }
 }
 
+/**
+ * log a uear into the system
+ * 
+ * @param {Request} req - request object
+ * @param {Response} res - response object
+ * @returns {String} - messages with data
+ */
 const login = async (req, res) => {
     try {
         const { user_id, login_time, user_name } = req.body;
@@ -59,6 +74,16 @@ const login = async (req, res) => {
     }
 }
 
+/**
+ * get all the users that are currentlly logged in
+ * to the system.
+ * 
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * 
+ * @returns {String} - message and data
+ */
+
 const getAllUsers = async (req, res) => {
     try {
         const sql = /*sql*/`
@@ -81,6 +106,13 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+/**
+ * get a single user from the database
+ * 
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns 
+ */
 const getSingleUser = async (req, res) => {
     try {
         const { user_id, name } = req.params;
@@ -111,6 +143,13 @@ const getSingleUser = async (req, res) => {
     }
 }
 
+/**
+ * update a particular user with the specified id
+ * 
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {string} - message and data
+ */
 const updateUser = async (req, res) => {
     try {
         const { user_id } = req.params;
@@ -142,6 +181,13 @@ const updateUser = async (req, res) => {
     }
 }
 
+/**
+ * remvoe a user from the database.
+ * 
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @returns {string} - message
+ */
 const removeUser = async (req, res) => {
     try {
         const { name } = req.body
@@ -164,7 +210,9 @@ const removeUser = async (req, res) => {
         
     }
 }
-
+/**
+ * export all the route handlers defined above
+ */
 module.exports = {
     register,
     login,
