@@ -3,7 +3,7 @@ import { getResults } from '../util/getResults'
 const register = async (req, res) => {
     try {
         const { name, pass, email, avatar_url } = req.body
-        if (!name || !pass || !email || avatar_url) {
+        if (!name || !pass || !email || !avatar_url) {
             return res.status(403).send({
                 message: 'all fields are required'
             })
@@ -83,7 +83,7 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
     try {
-        const { user_id } = req.params;
+        const { user_id, name } = req.params;
 
         if (!user_id) {
             return res.status(403).send({
@@ -91,7 +91,13 @@ const getSingleUser = async (req, res) => {
             })
         }
 
-        const user = await getResults(sql, [user_id]);
+        if (!name) {
+            return res.status(403).send({
+                message: 'name is required'
+            })
+        }
+
+        const user = await getResults(sql, [user_id, name]);
 
         return res.status(200).send({
             message: 'successfully retrieved a user',
@@ -138,12 +144,13 @@ const updateUser = async (req, res) => {
 
 const removeUser = async (req, res) => {
     try {
+        const { name } = req.body
         const sql = /*sql*/`
             delete from users
             where name=?
         `;
 
-        const results = await getResults(sql);
+        const results = await getResults(sql, [name]);
 
         return res.status(201).send({
             message: 'user successfull deleted',
