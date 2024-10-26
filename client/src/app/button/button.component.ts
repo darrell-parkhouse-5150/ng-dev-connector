@@ -28,11 +28,14 @@ testing: any;
 
   getColor() {
     return {
+
       backgroundColor: this.getColorVal(this.color),
+      
       color: this.getTextColorVal(this.color)
+    
     }
   }
-  private getColorVal(color: string) {
+  getColorVal(color: string) {
     switch (color) {
       case 'primary':
         return '#3498db';
