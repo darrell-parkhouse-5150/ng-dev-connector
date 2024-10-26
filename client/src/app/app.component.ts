@@ -6,10 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from "./header/header.component";
 import { NgModel } from '@angular/forms';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { ButtonComponent } from "./button/button.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RegisterComponent, UserListComponent ],
+  imports: [RouterOutlet, RegisterComponent, UserListComponent, ButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
