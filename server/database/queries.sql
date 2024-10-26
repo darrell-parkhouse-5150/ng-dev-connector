@@ -105,3 +105,19 @@ select * from component_post
 
 UPDATE `component_post` SET `total_loc` = '3751' WHERE `component_post`.`component_post_id` = 5; 
 
+UPDATE `component_post` SET `version` = '1,0.4' WHERE `component_post`.`component_post_id` = 2;
+use `dev_connector`;
+update `component_post` set `version`='1.0.4' where `component_post`.`component_post_id`= 2;
+
+select
+    c.version,
+    c.component_post_id,
+    c.author,
+    c.name
+from 
+    `component_post` c
+where
+    c.author = 'darrell'
+
+select c.* from `component_post` c
+
