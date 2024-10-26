@@ -15,18 +15,15 @@ import { NgIf } from '@angular/common';
 export class ProfileEditComponent implements OnInit {
     @Input() loading: boolean = false
     profileObj: Profile = {};
-    isAuthenticated: boolean = false
     editProfileForm!: FormGroup
 
-auth: any;
+
 
     constructor(private ps: ProfileService) {}
 
     ngOnInit(): void {
-        if (this.isAuthenticated === true) {
-            this.initForm();
-            this.fetchProfile();
-        }
+        this.initForm();
+        this.fetchProfile();
     }
     
 
@@ -40,7 +37,6 @@ auth: any;
             })
     }
 
-    editProfile() {}
     initForm() {
         this.editProfileForm = new FormGroup({
             user: new FormControl(this.profileObj.user, [Validators.required]),
