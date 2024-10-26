@@ -4,12 +4,13 @@ import { User } from './user';
 
 export interface Profile {
     id?: string;
-    user?: User;
+    user?: User | undefined;
+    email?: string
     company?: string
     experience?: string
     education?: string
     location?: string
     website?: string
     status?: string
-    // social?: { [key: string]: string }
+    social?: { [key: string]: string }
 }
