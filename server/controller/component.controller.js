@@ -87,6 +87,34 @@ export const getVersion = async (req, res) => {
     }
 }
 
+export const updateComponentVersion = async (req, res) => {
+    try {
+        const { old_version, new_version } = req.body
+
+        const sql = /*sql*/`
+
+        `;
+
+        const result = await getResults(sql, [old_version, new_version])
+
+        if (result.length === 0) {
+            return res.status(404).send({
+                message: `${noResultsError}`
+            })
+        } else {
+            return res.status(203).send({
+                message: `${successMsg} updated component version`
+            })
+        }
+    } catch (err) {
+        console.error(err)
+        
+        return res.status(503).send({
+            message: `${serverError}`
+        })
+    }
+}
+
 export const getSingleComponent = async (req, res) => {
     try {
         const { name } = req.body
