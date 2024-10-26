@@ -28,3 +28,31 @@ export const searchByName = async (req, res) => {
     }
 }
 
+export const searchByVersion = async (req, res) => {
+    try {
+        const { version } = req.body
+
+        if (!version) {
+            return res.status(403).send({
+                message: 'version is required'
+            })
+        }
+
+        const sql = /*sql*/`
+            select
+                c.version
+            from
+                component_post c
+            where
+                c.version >= '0.3.4'
+        `;
+    } catch (err) {
+        console.error(err)
+
+        return res.status(503).send({
+            message: `${serverError}`,
+            data: null
+        })
+    }
+}
+
